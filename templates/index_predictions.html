@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predictions</title>
+</head>
+<body>
+<p id="prediction_paragraph">
+    I see 
+    {{ predictions[0][0] }} ({{ '%.1f' % (predictions[0][1] * 100) }}%), 
+    but it may also be 
+    {{ predictions[1][0] }} ({{ '%.1f' % (predictions[1][1] * 100) }}%) 
+    or 
+    {{ predictions[2][0] }} ({{ '%.1f' % (predictions[2][1] * 100) }}%).
+</p>
+</body>
+</html>

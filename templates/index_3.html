@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sketchful AI</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="static/webImages/logo icon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <img src="static/webImages/logo icon.ico" id="logo">
+                <a class="navbar-brand" href="#page-top">Sketchful AI</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Meet the Crew</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About the Game</a></li>
+                      <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#timeline">Timeline</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">About the Model</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Word Bank Side Panel -->
+      <div id="mySidepanel" class="sidepanel">
+        <p class="closebtn word noselect" onclick="closeNav()">×</a>
+        <p class="word">Baseball</p>
+        <p class="word">Baseball bat</p>
+        <p class="word">Bat</p>
+        <p class="word">Bicycle</p>
+        <p class="word">Bowtie</p>
+        <p class="word">Canoe</p>
+        <p class="word">Carrot</p>
+        <p class="word">Coffee cup</p>
+        <p class="word">Crab</p>
+        <p class="word">Donut</p>
+        <p class="word">Dragon</p>
+        <p class="word">Envelope</p>
+        <p class="word">Fan</p>
+        <p class="word">Fish</p>
+        <p class="word">Giraffe</p>
+        <p class="word">Hurricane</p>
+        <p class="word">Leaf</p>
+        <p class="word">Moon</p>
+        <p class="word">Parrot</p>
+        <p class="word">Pencil</p>
+        <p class="word">Sailboat</p>
+        <p class="word">Skull</p>
+        <p class="word">Snail</p>
+        <p class="word">Snowflake</p>
+        <p class="word">Sock</p>
+        <p class="word">Star</p>
+        <p class="word">Syringe</p>
+        <p class="word">Triangle</p>
+        <p class="word">Umbrella</p>
+        <p class="word">Wheel</p>
+      </div>
+
+      <button class="sidebtn" onclick="openNav()">☰ Open word bank</button>  
+      <button class="sidebtn" id="randomWord" onclick="randomWord()">Generate random word</button>
+      <p class="sidebtn" id=randomWordDisplay></p>
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+            <div class="header-container">
+              <img src="static/webImages/logo recolour.png">
+              <h1 class="masthead-heading text-uppercase mb-0">Sketchful AI</h1>
+            </div>
+              <h2>Make a sketch, and it'll make a guess!</h2>
+              <div id="loadingIndicator"> 
+                <p>Check out the word bank for what to draw, or generate a random word!</p>
+              </div>
+              <div id="renderContainer">
+                <p id="placeholderParagraph"></p>
+              </div>
+                <!-- Canvas -->
+              <canvas id="canvas"></canvas>
+                <!-- Drawing Tools  -->
+              <div id="drawing-tools">
+              <button id="drawButton" class="btn btn-secondary">Draw (D)</button>
+              <button id="eraseButton" class="btn btn-secondary">Erase (E)</button>
+              <div class="slider-container">
+              <input type="range" id="sizeSlider" min="1" max="20" value="5">
+              <label for="sizeSlider" class="slider-label">Stroke width</label>
+              </div>
+              <button id="clearButton" class="btn btn-secondary">Clear (C)</button>
+              <button id="saveButton" class="btn btn-secondary">Guess (G)</button>
+              </div>
+            </div>
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Meet The Crew</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+              <div class="center">
+                <img src="static/webImages/majesticMango.png" style="width:100px;height:100px;">
+              </div>
+              <h3 class="text-center text-secondary">We are the majestic mangoes!</h3><br>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- Xu - Portfolio Item 1-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Xu2.png" alt="..."/>
+                        </div>
+                    </div>
+                    <!-- Harini - Portfolio Item 2-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Harini.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Max - Portfolio Item 3-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Max.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Aaron - Portfolio Item 4-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Aaron.jpg" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Sophie - Portfolio Item 5-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Sophie.jpg" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Austin - Portfolio Item 6-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Austin.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- John - Portfolio Item 7-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal7">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/John.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Chinmay - Portfolio Item 8-->
+                    <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal8">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="static/MeetTheCrewDoodles/Chinmay.png" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">About the Game</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class="col-lg-4 ms-auto"><p class="lead">Sketchful AI is a game inspired by 
+                      <a class='light' href="https://quickdraw.withgoogle.com/" target="_blank">Google's QuickDraw</a>
+                       and 
+                      <a class='light' href="https://sketchful.io/" target="_blank">Sketchful.io</a>
+                      . The goal for this game is to inspire players to learn about the world of AI. This game shows players that AI isn't just for cars and statistics but is easily accessible for video games as well.</p>
+                    </div>
+                    <div class="col-lg-4 me-auto"><p class="lead">This game was made by just a few high school students wanting to learn more about AI; proof that high quality products are attainable with such young minds. </p>
+                </div>
+              <div class = row>
+                <div class="col-lg-4 ms-auto">
+                  <img src="static/webImages/sketchful io.png" class="about-image">
+                </div>
+                <div class="col-lg-4 me-auto">
+                  <img src="static/webImages/google quick draw.png" class="about-image"></div>
+                </div>
+              </div>
+                <!-- About Section Button-->
+                <div class="text-center mt-4">
+                    <a class="btn btn-xl btn-outline-light" href="#page-top">
+                        Try it out!
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Timeline Section-->
+        <section class="page-section" id="timeline">
+          <div class="container">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary">Timeline</h2>
+             <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+              </div>
+            
+            </div>
+          <div class="timeline">
+            <div class="timecontainer left">
+              <div class="content">
+                <h2>Week 1</h2>
+                <p>Our project had to be Computer Vision related meaning the AI had to take a type of image input and output a result. Our ideas were ranging from plant identification to hand gesture Flappy Bird but an unanimous vote chose Sketchful AI. We began planning how to implement our plan into a real game.</p>
+              </div>
+            </div>
+          <div class="timecontainer right">
+              <div class="content">
+                <h2>Week 2</h2>
+                <p>We worked on gathering data for our project through Google Quickdraw. Google Quickdraw contained a variety of classes of images, that we could use to implement our Sketchful AI game. We gathered our data and uploaded it onto Roboflow, where we proceeded to tweak our model until it was able to identify the images supplied by Google Quickdraw's plentiful collection. Quickdraw's data actually did not only contain images, but the individual keystrokes of every user.</p>
+              </div>
+            </div>
+            <div class="timecontainer left">
+              <div class="content">
+                <h2>Week 3</h2>
+                <p>We began building this website to house our game. We picked out various colors, designs, and layouts for our website. We also created a video to advertise our version of Sketchful AI. We added more classes to our model, and continued training/testing it.</p>
+              </div>
+            </div>
+        </section>
+      
+        <!-- Contact Section-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">About the Model</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+              <div class="floatContainer">
+                <div class="floatLeft">
+                  <img src=static/webImages/confusion_matrix.png style="width:800px;height:600px;">
+                </div>
+                <div class="floatLeft">
+                  <p>A confusion matrix presents a table layout of the different outcomes of the prediction and results of a classification problem and helps visualize its outcomes. It plots a table of all the predicted and actual values of a classifier. Our model presents the true labels of the sketches on the y-axis and the predicted label that our model generated on the x-axis. As evinced by the sea of black surrounding thr diagonal in the center, our model is pretty acurate (99.4% accuracy with our training data and validation data).
+                  </p>
+                </div>
+              </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">This was a virtual camp!<br>
+                        https://www.ai-camp.org/</p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.facebook.com/aicampdotorg"><i class="fab fa-fw fa-facebook"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.instagram.com/a.icamp/"><i class="fab fa-fw fa-instagram"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.tiktok.com/@aicamp"><i class="fa-brands fa-tiktok"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.youtube.com/channel/UCUGJzo5EwViLGpAgYphNyzg"><i class="fab fa-fw fa-youtube"></i></a>
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">About Sketchful AI</h4>
+                        <p class="lead mb-0">
+                            Sketchful AI is a fun and well trained AI video game made by us.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright &copy; Majestic Mangoes 2023</small></div>
+        </div>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Xu Huang</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Xu2.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Sup guys, my name Xu and I from Quincy, MA. I'm chill guy and really enjoy leaning abut AI. Hope you enjoy our Shetchful AI!</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal"
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 2-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Harini Sivakumar</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Harini.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Hi! I'm a rising senior in New Jersey, and ChatGPT caught my eye so now I'm here learning about AI. I can't wait to see where I go next!  </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Max Ramone</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Max.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Hey, I'm Max. I'm going into my senior year. I live in New York and plan on working in the data science and ai field in the future.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 4-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">AARON ZHANG</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Aaron.jpg" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">HELLO! THE NAME'S AARON ZHANG. I LIVE CLOSE TO WASHINGTON DC AND CURRENTLY I AM A HIGH SCHOOL SENIOR. I HAVE SOME DECENT CODING EXPERIENCE, AND I'LL USE IT FOR ROBOTICS IN THE FUTURE.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 5-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Sophie Hoogeveen</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Sophie.jpg" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Hey! I'm Sophie, some girl from Toronto, and I code sometimes. Just graduted high school which is crazy, I know. I'll be going to the University of Guelph for computer science in Fall 2023! (☉‿☉✿) </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- Portfolio Modal 6-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Austin Conarroe</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Austin.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">AUSTIN! Hey! My name's Austin, a high schooler from Kingston, Ontario. I love to spend time with friends and play video games and I'm an aspiring Computer Science teacher.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+      <!-- Portfolio Modal 7-->
+        <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" aria-labelledby="portfolioModal7" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">John Ebbers</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/John.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Hello my name is John. 
+I am from Canada and will be attending the University of Waterloo in the fall for Geomatics. I am really enjoyed AI camp and learned a lot!</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- Portfolio Modal 8-->
+        <div class="portfolio-modal modal fade" id="portfolioModal8" tabindex="-1" aria-labelledby="portfolioModal8" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Chinmay Ranganath</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="static/MeetTheCrewDoodles/Chinmay.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Hi! I'm Chinmay, and I mentored this group of brilliant minds in creating this neat website! Enjoy our product!</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
